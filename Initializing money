@@ -1,0 +1,65 @@
+'''Project Goal: Personal Finance Tracker
+
+The objective of this project is to develop a Python program that enables users to effectively manage their finances. The program will allow users to:
+
+Create an Account: Users can sign up for an account to securely store their financial data.
+Upload Income: Users can input multiple income sources, making it easy to track earnings.
+Track Expenses: Users can record their expenses to monitor spending patterns and manage their money effectively.
+Set Savings Goals: Users can establish savings targets based on their financial objectives. They will have the flexibility to determine how much to save within specific intervals (e.g., weekly, monthly).
+Visualize Finances: The application will generate graphs to illustrate income, expenses, savings progress, and overall financial health.
+Weekly Goals: Users can set and track weekly financial goals to encourage better spending and saving habits.
+'''
+#creating the basic outline for the project
+# Function to handle money inputs and ensure valid, non-negative numbers are entered
+def money():
+    while True:
+        try:
+            money = int(input())  # Input the amount
+            if money < 0:  # Ensure no negative values
+                print("Sorry, you cannot input a negative number. Please try again.\n")
+            else:
+                return money
+        except ValueError:
+            print("Invalid input! \nPlease enter a numeric value.")
+
+# Function to handle expense tracking and calculations
+def expense():
+    expenses = {}  # Dictionary to store expense names and costs
+    print("How many expenses do you have per month: ")
+    expenses_num = money()
+    
+    print(f"\nYou have {expenses_num} expenses.")
+    
+    # Loop to input the name and cost of each expense
+    for i in range(1, expenses_num + 1):  # Loop from 1 to expenses_num
+        print(f"\nWhat is the name of expense number {i}?")
+        expense_name = input()  # Input expense name
+        
+        print(f"What is the cost of {expense_name}?")
+        expense_cost = money()  # Input expense cost
+        
+        # Add the expense name and cost to the dictionary
+        expenses[expense_name] = expense_cost
+
+    # Display all entered expenses
+    print("\nHere are your monthly expenses:")
+    for expense_name, expense_cost in expenses.items():
+        print(f"{expense_name}: ${expense_cost}")
+
+    # Calculate and display the total of all expenses
+    total_expenses = sum(expenses.values())
+    print(f"\nYour total monthly expenses are: ${total_expenses}")
+
+# Main Program Execution
+print("Hello, welcome to your virtual finance tracker \n")
+
+# Ask the user for initial saved money
+print("How much money do you currently have saved up? ")
+print(f"You have ${money()} saved up.\n")
+
+# Ask the user for their weekly income
+print("What is your weekly income?")
+print(f"Your weekly income is ${money()}.\n")
+
+# Now, run the expense function to gather expenses
+expense()
