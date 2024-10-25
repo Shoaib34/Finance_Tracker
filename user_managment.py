@@ -1,5 +1,7 @@
 import json
 import os
+from input_utils import money
+from expenses import expense
 
 def load_user_data():
     """Load existing user data from the JSON file."""
@@ -12,22 +14,58 @@ def load_user_data():
         # If the file doesn't exist, return an empty dictionary
         return {}
 
-def create_user_data(username, password):
+def create_user():
     """Save user data (username and password) to the JSON file."""
-    user_data = load_user_data()  # Load existing user data
+    while True:
+        username = input("You are now creating a new account\nEnter a new username: ")  # Prompt for username
+        password = input("Enter a new password: ")  # Prompt for password
+        
+        user_data = load_user_data()  # Load existing user data
 
-    # Add or update user data
-    user_data[username] = password  # Replace password with a hashed version in production
+        if username in user_data:
+            print("Sorry, this username is already in use try again")
 
-    # Write updated user data back to the JSON file
-    with open('users.json', 'w') as json_file:
-        json.dump(user_data, json_file)
-    print("User data saved.")
+        else:
+            # Promt for additional details
+            try:
+                saving = float(input("Enter your current savings amount: "))
+                weekly_income = float(input("Enter your weekly income: "))
 
-def login(username, password):
+                #intialize a empty dictionary to hold all the expenses information
+                expenses = {}
+                add_expense = input("Do you want to add an expense? (Yes/No): ").lower()
+                
+                #Loop to add expenses if needed 
+                while add_expense == "yes":
+                    expense_name = input("Enter the expense name: ")
+                    expense_amount = float(input(f"Enter the amount for {expense_name}: "))
+                    expenses[expense_name] = expense_amount#adding key and item 
+                    add_expense = input("Do you want to add anther expense? (Yes/No): ").lower()
+                
+                # Store user details in a dictionary
+                user_info = {
+                "password" : password,# Replace password with a hashed version in production
+                "saving" : saving,
+                "weekly_income" : weekly_income,
+                "expenses": expenses}
+                
+                # Add user info dictionary to the main user_data dictionary
+                user_data[username] = user_info  
+
+                # Write updated user data back to the JSON file
+                with open('users.json', 'w') as json_file:
+                    json.dump(user_data, json_file)
+                print("User data saved.")
+                break
+            except ValueError:
+                print("Invalid input. Please enter numerical values for savings and income.")    
+
+def login():
     """Check if the provided username and password match the stored user data."""
     user_data = load_user_data()  # Load existing data
     while True:
+        username = input("Enter your username: ")
+        password = input("Enter your password: ")
         try:
             # Check if the username exists and the password matches
             if username in user_data and user_data[username] == password:
@@ -36,8 +74,6 @@ def login(username, password):
             else:
                 print("Invalid username or password. Please try again.")
                 # Ask for credentials again
-                username = input("Enter your username: ")
-                password = input("Enter your password: ")
         except Exception as e:
             print(f"An error occurred: {e}. Please try again.")
 

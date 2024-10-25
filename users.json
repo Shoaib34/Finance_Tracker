@@ -1,5 +1,1 @@
-
-    {
-        "john": "Ilahi123",
-        "sarah": "sarah123"
-    }
+{"example_user": {"password": "example_password", "savings": 1000.0, "weekly_income": 500.0, "expenses": {"rent": 800, "groceries": 200, "utilities": 100}}, "s": {"password": "s", "saving": 30.0, "weekly_income": 20.0, "expenses": {}}}
