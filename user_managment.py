@@ -71,14 +71,25 @@ def create_user():
     print("User data saved.")
 
 def login():
-    """Check if the provided username and password match the stored user data."""
+    """Check if the provided username and password match the stored user data.
+    
+    Returns:
+        dict: User data of the successfully logged-in user, or None if login fails.
+    """
     user_data = load_user_data()  # Load existing data
-    while True:
+    max_attempts = 3  # Set a limit for login attempts
+    attempts = 0
+    
+    while attempts < max_attempts:
         username = input("Enter your username: ")
         password = input("Enter your password: ")
         
         if username in user_data and user_data[username]["password"] == password:
             print("Login successful!")
-            break  # Exit the loop on successful login
+            return user_data[username]  # Return user data upon successful login
         else:
+            attempts += 1
             print("Invalid username or password. Please try again.")
+            if attempts == max_attempts:
+                print("Too many failed attempts. Please try again later.")
+                return None  # Return None if login fails after max attempts
