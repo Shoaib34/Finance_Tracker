@@ -19,10 +19,13 @@ def display_user_graphs(user_info):
     plt.title('User Financial Breakdown')
     plt.xlabel('Categories')
     plt.ylabel('Amount ($)')
+    #lowest lim = 0, take the max value from values and 500 to it
     plt.ylim(0, max(values) + 500)  # Set y-axis limit for better visibility
 
     # Show value labels on top of the bars
+    #enumerate returns both index and actual value
     for i, value in enumerate(values):
+        #i = x coordinate
         plt.text(i, value + 10, f"${value}", ha='center')
 
     plt.grid(axis='y')  # Add grid for better readability
