@@ -1,1 +1,50 @@
-{"example_user": {"password": "example_password", "savings": 1000.0, "weekly_income": 500.0, "expenses": {"rent": 800, "groceries": 200, "utilities": 100}}, "s": {"password": "s", "saving": 30.0, "weekly_income": 20.0, "expenses": {}}}
+{
+    "example_user": {
+        "password": "example_password",
+        "savings": 1000.0,
+        "weekly_income": 500.0,
+        "expenses": {
+            "rent": 800,
+            "groceries": 200,
+            "utilities": 100
+        }
+    },
+    "s": {
+        "password": "s",
+        "saving": 30.0,
+        "weekly_income": 20.0,
+        "expenses": {}
+    },
+    "ssss": {
+        "password": "fsfs",
+        "saving": 30.0,
+        "weekly_income": 300.0,
+        "expenses": {}
+    },
+    "c": {
+        "password": "c",
+        "saving": 1.0,
+        "weekly_income": 1.0,
+        "expenses": {
+            "k": 1.0,
+            "l": 2.0
+        }
+    },
+    "n": {
+        "password": "n",
+        "saving": 30.0,
+        "weekly_income": 30.0,
+        "expenses": {
+            "kk": 30.0,
+            "0": 9.0
+        }
+    },
+    "l": {
+        "password": "l",
+        "saving": 30.0,
+        "weekly_income": 30.0,
+        "expenses": {
+            "0": 0.0
+        }
+    }
+}

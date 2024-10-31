@@ -11,8 +11,10 @@ def main():
             
             if option_input == 1:
                 login()  # Call the login function
+                break
             elif option_input == 2:
                 create_user()  # Call the create user function
+                break
             else:
                 print("Invalid option. Please choose 1 or 2.")  # Handle invalid input
                 
